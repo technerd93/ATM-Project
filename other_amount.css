@@ -1,0 +1,38 @@
+#Container 
+{
+height: 900px;
+width: 900px;
+background-color: #2e2d2d17;
+}
+
+.button
+{
+background-color: #4ba853;
+color: white;
+border: none;
+padding: 20px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 75px;
+margin: auto;
+cursor: pointer;
+position: absolute;
+top: 30%;
+left: 18.5%;
+}
+
+#intro_text
+{
+height: 75px;
+width: 900px;
+text-align: center;
+padding: 30px 0;
+}
+
+input
+{
+margin: auto;
+display: block;
+font-size: 40px;
+}
