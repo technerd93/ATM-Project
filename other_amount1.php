@@ -1,9 +1,13 @@
 <?php
 
-$requestedAmount;
+session_start();
+
+$user_id = $_SESSION['user_id'];
+
+$requestedAmount = 0;
 //print_r($_POST);
 
-//putting amount user entered into variable to remote from balance.
+//putting amount user entered into variable to remove from balance.
 foreach($_POST as $key => $requestedAmount) {
    // echo $requestedAmount;
 }
@@ -17,9 +21,21 @@ if(!$conn){
 }
 
 //query to withdarw 20 dollars
-$sql = 'SELECT balance FROM accounts WHERE user_id = 1234';
+$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
 
 $result = mysqli_query($conn, $sql);
+
+// Check if user/account exists
+if (mysqli_num_rows($result) === 0) {
+    echo "Invalid user ID or account not found.";
+    mysqli_close($conn);
+    exit;
+}
+
+if (!$result) {
+    echo "Query error: " . mysqli_error($conn);
+    exit;
+}
 
 $balance = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -35,13 +51,13 @@ for($i=0; $i<count($balance); $i++) {
     //echo $newBalance;
 }
 
-//subtracing $20 from balance
+//subtracing account from balance
 $updatedBalance = $newBalance - $requestedAmount;
 //echo "<br>";
 //echo $updatedBalance;
 
 //updatding database wiht new balance
-$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = 1234";
+$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
 
 if ($conn->query($sql) === TRUE) {
     //echo "Record updated successfully";

@@ -13,7 +13,9 @@ if(!$conn){
 }
 
 //query to withdarw 20 dollars
-$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
+$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Savings'";
+
+//echo $user_id;
 
 $result = mysqli_query($conn, $sql);
 
@@ -44,12 +46,12 @@ for($i=0; $i<count($balance); $i++) {
 }
 
 //subtracing $50 from balance
-$updatedBalance = $newBalance - 50;
+$updatedBalance = $newBalance - 20;
 //echo "<br>";
 //echo $updatedBalance;
 
 //updatding database wiht new balance
-$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
+$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_id = $user_id AND account_type = 'Savings'";
 
 if ($conn->query($sql) === TRUE) {
     //echo "Record updated successfully";

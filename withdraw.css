@@ -43,7 +43,7 @@ top: 60%;
 left: 10%;
 }
 
-#intro_text
+#enter_amount
 {
 height: 75px;
 width: 900px;
@@ -58,23 +58,19 @@ text-align: right;
 font-size: 20pt;
 }
 
-form
+#intro_text
 {
-text-align: center; 
-display: inline-block;
-font-size: 40pt;
+width: 100%;
+padding-top: 45px;
+margin-bottom: 10px;
 }
 
-.button
+#intro_text h1
 {
-background-color: #4ba853;
-color: white;
-border: none;
-padding: 20px;
+width: 100%;
 text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 75px;
-margin: 0 auto;
-cursor: pointer;
+font-size: 35px;
+margin: 0;
 }
+
+

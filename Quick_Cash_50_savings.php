@@ -13,7 +13,7 @@ if(!$conn){
 }
 
 //query to withdarw 20 dollars
-$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
+$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Savings'";
 
 $result = mysqli_query($conn, $sql);
 
@@ -49,7 +49,7 @@ $updatedBalance = $newBalance - 50;
 //echo $updatedBalance;
 
 //updatding database wiht new balance
-$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
+$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Savings'";
 
 if ($conn->query($sql) === TRUE) {
     //echo "Record updated successfully";

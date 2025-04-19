@@ -26,9 +26,9 @@ if (isset($_POST['other_amount1()']))
             <div id="intro_text">
             <h1>Please enter the amount you wish to withdraw.</h1>
             </div>
-            <form action="other_amount1.php" method="POST">
+            <form action="other_amount_savings.php" method="POST">
                 <input type="text" name="requestedAmount">
-                <a href="other_amount1.php">
+                <a href="other_amount_savings.php">
                 <button onClick="other_acoumt1()" class="button">Enter</button>
             </form>
         </div>
