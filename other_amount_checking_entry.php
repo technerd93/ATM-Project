@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['other_amount1()']))
+if (isset($_POST['other_amount()']))
   {
   // Execute this code if the submit button is pressed.
   $formvalue = $_POST['requestedAmount'];
@@ -18,17 +18,14 @@ if (isset($_POST['other_amount1()']))
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="other_amount.css" id="style"> 
     </head>
-    <script type="text/javascript">
-
-    </script>
     <body>
         <div id="Container">
             <div id="intro_text">
             <h1>Please enter the amount you wish to withdraw.</h1>
             </div>
-            <form action="other_amount1.php" method="POST">
+            <form action="other_amount_checking.php" method="POST">
                 <input type="text" name="requestedAmount">
-                <a href="other_amount1.php">
+                <a href="other_amount_checking.php">
                 <button onClick="other_acoumt1()" class="button">Enter</button>
             </form>
         </div>

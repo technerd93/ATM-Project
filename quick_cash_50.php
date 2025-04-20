@@ -1,5 +1,9 @@
 <?php
 
+session_start();
+
+$user_id = $_SESSION['user_id'];
+
 //connect to database
 $conn = mysqli_connect('localhost', 'testuser', 'abc/123', 'atm machine');
 
@@ -9,9 +13,24 @@ if(!$conn){
 }
 
 //query to withdarw 20 dollars
-$sql = 'SELECT balance FROM accounts WHERE user_id = 1234';
+$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
 
 $result = mysqli_query($conn, $sql);
+
+// Check if user/account exists
+if (mysqli_num_rows($result) === 0) {
+    //echo "Invalid user ID or account not found.";
+
+    //redirects user after a short delay to show there user id is not valid. 
+    header("Location: invalid_user_id.html");
+    mysqli_close($conn);
+    exit;
+}
+
+if (!$result) {
+    echo "Query error: " . mysqli_error($conn);
+    exit;
+}
 
 $balance = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -33,7 +52,7 @@ $updatedBalance = $newBalance - 50;
 //echo $updatedBalance;
 
 //updatding database wiht new balance
-$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = 1234";
+$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
 
 if ($conn->query($sql) === TRUE) {
     //echo "Record updated successfully";
@@ -60,8 +79,11 @@ mysqli_close($conn);
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="withdraw.css" id="style"> 
     </head>
-    <script type="text/javascript">
-
+    <script>
+    // Redirecting user after 10 Seconds to start page if they do not click New Transcation button.
+    setTimeout(function() {
+        window.location.href = "ATM_System.html";
+    }, 10000);
     </script>
     <body>
         <div id="Container">
