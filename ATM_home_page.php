@@ -4,18 +4,20 @@ session_start();
 
 //print_r($_POST);
 
-$sent_user_id;
 //putting userid entered into variable then senidng to a session variable.
-foreach($_POST as $key => $sent_user_id) {
-    //echo $sent_user_id;
+if (isset($_POST['user_id'])) {
+    $user_id = $_POST['user_id'];
+    $_SESSION['user_id'] = $user_id;
+} elseif (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+} else {
+    // no user id entered 
+    header('Location: ATM_System.html');
 }
 
-//echo $sent_user_id;
-
-$_SESSION['user_id'] = $sent_user_id;
 //print_r($_SESSION);
-?>
 
+?>
 
 <!DOCTYPE html>
 <!--Christopher Markham, Arturo Bramasco, & Kaleo C Chase
@@ -23,7 +25,7 @@ $_SESSION['user_id'] = $sent_user_id;
     Spring Semester, 2025-->
 <html>
     <head>
-        <meta " System Implentation C451 Project, HTML, PHP, JavaScript, SQL ">
+        <meta name="description" content="System Implementation C451 Project, HTML, PHP, Javascript, SQL">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="clicktostart.css" id="style">
     </head>
