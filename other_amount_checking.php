@@ -4,8 +4,16 @@ session_start();
 
 $user_id = $_SESSION['user_id'];
 
+$requestedAmount = 0;
+//print_r($_POST);
+
+//putting amount user entered into variable to remove from balance.
+foreach($_POST as $key => $requestedAmount) {
+   // echo $requestedAmount;
+}
+
 //connect to database
-$conn = mysqli_connect('localhost', 'testuser', 'abc/123', 'atm machine');
+$conn = mysqli_connect('localhost', 'testuser' , 'abc/123', 'atm machine');
 
 //check connection
 if(!$conn){
@@ -22,7 +30,7 @@ if (mysqli_num_rows($result) === 0) {
     //echo "Invalid user ID or account not found.";
 
     //redirects user after a short delay to show there user id is not valid. 
-    header("Location: invalid_user_id.html"); 
+    header("Location: invalid_user_id.html");
     mysqli_close($conn);
     exit;
 }
@@ -46,8 +54,8 @@ for($i=0; $i<count($balance); $i++) {
     //echo $newBalance;
 }
 
-//subtracing $20 from balance
-$updatedBalance = $newBalance - 20;
+//subtracing account from balance
+$updatedBalance = $newBalance - $requestedAmount;
 //echo "<br>";
 //echo $updatedBalance;
 
