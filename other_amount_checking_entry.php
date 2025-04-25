@@ -14,7 +14,7 @@ if (isset($_POST['other_amount()']))
     Spring Semseter, 2025-->
 <html>
     <head>
-        <meta " System Implementation, C451 Porject, HTML, PHP, Javascript, SQL ">
+        <meta name="description" content="System Implementation C451 Project, HTML, PHP, Javascript, SQL">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="other_amount.css" id="style"> 
     </head>
