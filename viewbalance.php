@@ -63,8 +63,24 @@ if (!isset($savingsBalance)) {
     $savingsBalance = 0;
 }
 
-//checking to make sure savings balance is zero if user does not have a savings account
-//echo $savingsBalance;
+//showing past withdraw transactions 
+
+$sql = "SELECT amount, transaction_type, transaction_date FROM transactions Where user_id = $user_id";
+
+$result = mysqli_query($conn, $sql);
+
+$result = $conn->query($sql);
+
+$transactions = " ";
+if($result->num_rows > 0) {
+    //output the data of the array,  followed example from w3schools
+    While($row = $result->fetch_assoc()) {
+    //echo $row["transaction_date"]. " | " . $row["transaction_type"]. " | $" . $row["amount"]. "<br>";
+    $transactions .= $row["transaction_date"]. " | " . $row["transaction_type"]. " | $" . $row["amount"]. "\n";
+    }
+} else {
+    echo "No transaction history";
+}
 
 // freeing up used memory
 mysqli_free_result($result);
@@ -79,22 +95,28 @@ mysqli_close($conn);
     Spring Semseter, 2025-->
 <html>
     <head>
-        <meta " System Implementation, C451 Porject, HTML, PHP, Javascript, SQL ">
+        <meta name="description" content="System Implementation C451 Project, HTML, PHP, Javascript, SQL">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="withdraw.css" id="style"> 
     </head>
     <script>
-    // Redirecting user after 10 Seconds to start page if they do not click New Transcation button.
+    // Redirecting user after 10 Seconds to start page to protect users information
     setTimeout(function() {
         window.location.href = "ATM_home_page.php";
-    }, 10000);
+        }, 10000);
     </script>
     <body>
         <div id="Container">
             <div id = "intro_text">
-            <h1>Account Balances</h1>
-            <h1>Checking: $<?php echo $checkingBalance;?></h1>
-            <h1>Savings: $<?php echo $savingsBalance;?></h1>
+                <h1>Account Balances</h1>
+            <br>
+                <h2>Checking: $<?php echo $checkingBalance;?></h2>
+                <h2>Savings: $<?php echo $savingsBalance;?></h2>
+            </div>
+            <br>
+            <div id = "transaction_history">
+                <h3>Withdrawal History</h3>
+                <textarea rows="5" cols="50" readonly style="resize: none;"><?php echo $transactions; ?></textarea>
             </div>
         </div>
     </body>

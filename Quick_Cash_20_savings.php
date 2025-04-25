@@ -12,7 +12,10 @@ if(!$conn){
     echo 'Connection error:' . mysqli_connect_error();
 }
 
-//query to withdarw 20 dollars
+//function withdraws $20 from account and updates account
+function balance_update($conn, $user_id) {
+
+    //query to withdarw 20 dollars
 $sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Savings'";
 
 //echo $user_id;
@@ -39,7 +42,6 @@ $balance = mysqli_fetch_all($result, MYSQLI_ASSOC);
 //print_r($balance);
 
 //removing balance from nested array
-$newBalance;
 for($i=0; $i<count($balance); $i++) {
     foreach($balance[$i] as $key => $newBalance) {
         //echo $key. " : " . $value . "<br>";
@@ -53,7 +55,7 @@ $updatedBalance = $newBalance - 20;
 //echo "<br>";
 //echo $updatedBalance;
 
-//updatding database wiht new balance
+//updatding database with new balance
 $sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_id = $user_id AND account_type = 'Savings'";
 
 if ($conn->query($sql) === TRUE) {
@@ -64,7 +66,58 @@ if ($conn->query($sql) === TRUE) {
 
 // freeing up used memory
 mysqli_free_result($result);
-// closing connection
+
+}
+
+//gets account ID from accounts table to use in transaction table
+function get_account_id($conn, $user_id) {
+
+    //getting account id from accounts table
+    $sql = "SELECT account_id FROM accounts WHERE user_id = $user_id";
+
+    $result = mysqli_query($conn, $sql);
+
+    $account_id = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    //pulling user id out of array to add to transaction history
+        for($i=0; $i<count($account_id); $i++) {
+            foreach($account_id[$i] as $key => $user_account_id) {
+                //echo $user_account_id;
+            }           
+        }
+        return $user_account_id;
+}
+ 
+// rand functions to randomly select atm and transation id
+function getATM() {
+    $atm = ['ATM1', 'ATM2', 'ATM3'];
+    return $atm[array_rand($atm)];
+}
+
+function getID() {
+    $id = rand(10000, 99999);
+    return $id;
+}
+
+balance_update($conn, $user_id);
+$transaction_id = getID();
+//echo getID();
+$atm = getATM();
+//echo getATM();
+$account_id = get_account_id($conn, $user_id); 
+
+//inserting transaction into transaction database table
+$sql = "INSERT INTO transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status, user_id) 
+VALUES ('$transaction_id', '$account_id', '$atm', 'Withdrawal', '20', NOW(), 'completed', '$user_id')";
+
+//checking if data went in properly
+if ($conn->query($sql) === TRUE) {
+    //echo "New record created successfully";
+  } else {
+    //echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+// closing connection to database
 mysqli_close($conn);
 
 //print_r($balance);
@@ -77,7 +130,7 @@ mysqli_close($conn);
     Spring Semseter, 2025-->
 <html>
     <head>
-        <meta " System Implementation, C451 Porject, HTML, PHP, Javascript, SQL ">
+        <meta name="description" content="System Implementation C451 Project, HTML, PHP, Javascript, SQL">
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="withdraw.css" id="style"> 
     </head>
