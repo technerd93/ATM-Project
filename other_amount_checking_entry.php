@@ -30,3 +30,4 @@ if (isset($_POST['other_amount()']))
             </form>
         </div>
     </body>
+</html>

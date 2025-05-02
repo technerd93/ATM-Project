@@ -2,18 +2,7 @@
 
 session_start();
 
-//print_r($_POST);
-
-//putting userid entered into variable then senidng to a session variable.
-if (isset($_POST['user_id'])) {
-    $user_id = $_POST['user_id'];
-    $_SESSION['user_id'] = $user_id;
-} elseif (isset($_SESSION['user_id'])) {
-    $user_id = $_SESSION['user_id'];
-} else {
-    // no user id entered 
-    header('Location: ATM_System.html');
-}
+$user_id = $_SESSION['user_id'];
 
 //print_r($_SESSION);
 
@@ -90,6 +79,10 @@ $last_name = $last_names[0]['last_name'];
                         <button onClick="savings()" class="button"> Withdraw Savings</button>
                     </a>
                 </div>
+            </div>
+            <div id="select_deposit">
+                <a href="select_deposit_account.html">
+                <button onClick="deposit()" class="button">Deposit Check</button>
             </div>
             <div id="select_view_account">
                     <a href="viewbalance.php">

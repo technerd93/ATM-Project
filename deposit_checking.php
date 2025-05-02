@@ -23,61 +23,61 @@ if(!$conn){
 //updates account wuth user entered amount
 function balance_update($conn, $user_id, $requestedAmount) {
 
-//query to withdarw user entered amount dollars
-$sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
-
-$result = mysqli_query($conn, $sql);
-
-// Check if user/account exists
-if (mysqli_num_rows($result) === 0) {
-    //echo "Invalid user ID or account not found.";
-
-    //redirects user after a short delay to show there user id is not valid. 
-    header("Location: invalid_user_id.html");
-    mysqli_close($conn);
-    exit;
-}
-
-if (!$result) {
-    echo "Query error: " . mysqli_error($conn);
-    exit;
-}
-
-$balance = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-//print_r($balance);
-
-//removing balance from nested array
-for($i=0; $i<count($balance); $i++) {
-    foreach($balance[$i] as $key => $newBalance) {
-        //echo $key. " : " . $value . "<br>";
+    //query to withdarw user entered amount dollars
+    $sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Checking'";
+    
+    $result = mysqli_query($conn, $sql);
+    
+    // Check if user/account exists
+    if (mysqli_num_rows($result) === 0) {
+        //echo "Invalid user ID or account not found.";
+    
+        //redirects user after a short delay to show there user id is not valid. 
+        header("Location: invalid_deposit_account_savings.html");
+        mysqli_close($conn);
+        exit;
     }
-   // echo "<br>";
-    //echo $newBalance;
-}
+    
+    if (!$result) {
+        echo "Query error: " . mysqli_error($conn);
+        exit;
+    }
+    
+    $balance = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+    //print_r($balance);
+    
+    //removing balance from nested array
+    for($i=0; $i<count($balance); $i++) {
+        foreach($balance[$i] as $key => $newBalance) {
+            //echo $key. " : " . $value . "<br>";
+        }
+       // echo "<br>";
+        //echo $newBalance;
+    }
+    
+    //subtracing account from balance
+    $updatedBalance = (int)$newBalance + (int)$requestedAmount;
+    //echo "<br>";
+    //echo $updatedBalance;
+    
+    //updatding database wiht new balance
+    $sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
+    
+    if ($conn->query($sql) === TRUE) {
+        //echo "Record updated successfully";
+      } else {
+        //echo "Error updating record: " . $conn->error;
+      }
+    
+      
+    
+    // freeing up used memory
+    mysqli_free_result($result);
+    
+    }
 
-//subtracing account from balance
-$updatedBalance = $newBalance - $requestedAmount;
-//echo "<br>";
-//echo $updatedBalance;
-
-//updatding database wiht new balance
-$sql = "UPDATE accounts SET balance = '$updatedBalance' WHERE user_ID = $user_id AND account_type = 'Checking'";
-
-if ($conn->query($sql) === TRUE) {
-    //echo "Record updated successfully";
-  } else {
-    //echo "Error updating record: " . $conn->error;
-  }
-
-  
-
-// freeing up used memory
-mysqli_free_result($result);
-
-}
-
-//gets account ID from accounts table to use in transaction table
+//gets account ID from accounts table to use in transaction table   
 function get_account_id($conn, $user_id) {
 
     //getting account id from accounts table
@@ -117,7 +117,7 @@ $account_id = get_account_id($conn, $user_id);
 
 //inserting transaction into transaction database table
 $sql = "INSERT INTO transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status, user_id) 
-VALUES ('$transaction_id', '$account_id', '$atm', 'Withdrawal', '$requestedAmount', NOW(), 'completed', '$user_id')";
+VALUES ('$transaction_id', '$account_id', '$atm', 'Deposit', '$requestedAmount', NOW(), 'completed', '$user_id')";
 
 //checking if data went in properly
 if ($conn->query($sql) === TRUE) {
@@ -145,7 +145,7 @@ mysqli_close($conn);
         <link rel="stylesheet" type="text/css" href="withdraw.css" id="style"> 
     </head>
     <script>
-    // Redirecting user after 10 Seconds to start page if they do not click New Transcation button.
+    // Redirecting user after 10 Seconds to start page.
     setTimeout(function() {
         window.location.href = "ATM_System.html";
     }, 10000);
@@ -153,7 +153,9 @@ mysqli_close($conn);
     <body>
         <div id="Container">
             <div id = "intro_text">
-            <h1>Please take your cash.</h1>
+            <h1>Your Check for $<?php echo $requestedAmount?> has been deposited.</h1>
+            <br>
+            <h2>Funds may not be available right away.</h2>
             </div>
         </div>
     </body>

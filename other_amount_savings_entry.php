@@ -18,9 +18,6 @@ if (isset($_POST['other_amount1()']))
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="other_amount.css" id="style"> 
     </head>
-    <script type="text/javascript">
-
-    </script>
     <body>
         <div id="Container">
             <div id="intro_text">
@@ -33,3 +30,4 @@ if (isset($_POST['other_amount1()']))
             </form>
         </div>
     </body>
+</html>
