@@ -55,8 +55,32 @@ left: 6%;
 {
 position: absolute;
 top: 50px;
-top: 60%;
+top: 80%;
 left: 10%;
+}
+
+#select_deposit
+{
+position: absolute;
+top: 50px;
+top: 60%;
+left: 9%;
+}
+
+#Checking
+{
+position: absolute;
+top: 50px;
+top: 20%;
+left: 15%;
+}
+
+#Savings
+{
+position: absolute;
+top: 50px;
+top: 40%;
+left: 16.3%;
 }
 
 .h1

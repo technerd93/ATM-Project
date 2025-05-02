@@ -91,6 +91,7 @@ function getATM() {
     return $atm[array_rand($atm)];
 }
 
+//generates id for transaction history
 function getID() {
     $id = rand(10000, 99999);
     return $id;
@@ -144,3 +145,4 @@ mysqli_close($conn);
             </div>
         </div>
     </body>
+</html>

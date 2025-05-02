@@ -1,10 +1,9 @@
 <?php
 
-// checks if post is set
-if (isset($_POST['send_user_id()']))
+if (isset($_POST['depoist_amount()']))
   {
-  //adds user entered number to user_id
-  $formvalue = $_POST['user_id'];
+  // Execute this code if the submit button is pressed.
+  $formvalue = $_POST['requestedAmount'];
   }
 
 ?>
@@ -22,12 +21,12 @@ if (isset($_POST['send_user_id()']))
     <body>
         <div id="Container">
             <div id="intro_text">
-            <h1>Please enter your user ID.</h1>
+            <h1>Please enter the amount you wish to Deposit.</h1>
             </div>
-            <form action="login.php" method="POST">
-                <input type="text" name="user_id" minlength="4" maxlength="4" required>
-                <a href="login.php">
-                <button onClick="send_user_id()" class="button">Enter</button>
+            <form action="deposit_savings.php" method="POST">
+                <input type="text" name="requestedAmount">
+                <a href="deposit.php">
+                <button onClick="depoist_amount()" class="button">Enter</button>
             </form>
         </div>
     </body>

@@ -95,3 +95,22 @@ text-align: center;
 font-family: Arial, sans-serif;
 font-size: 15px;
 }
+
+.loader {
+border: 16px solid #f3f3f3;
+border-radius: 50%;
+border-top: 16px solid #4ba853;
+width: 120px;
+height: 120px;
+-webkit-animation: spin 2s linear infinite; /*for apple safari*/
+animation: spin 2s linear infinite;
+top:-100%; right:-100%; left:-100%; bottom:-100%;
+margin:auto;
+z-index:0;
+}
+
+@keyframes spin /*followed w3 schools*/
+{
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}

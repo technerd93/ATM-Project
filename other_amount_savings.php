@@ -19,9 +19,10 @@ if(!$conn){
     echo 'Connection error:' . mysqli_connect_error();
 }
 
+//updates account wuth user entered amount
 function balance_update($conn, $user_id, $requestedAmount) {
 
-//query to withdraw user entered amount
+//query to withdarw user entered amount dollars
 $sql = "SELECT balance FROM accounts WHERE user_id = $user_id AND account_type = 'Savings'";
 
 $result = mysqli_query($conn, $sql);
@@ -96,6 +97,7 @@ function getATM() {
     return $atm[array_rand($atm)];
 }
 
+//generates id for transaction history
 function getID() {
     $id = rand(10000, 99999);
     return $id;
@@ -149,3 +151,4 @@ mysqli_close($conn);
             </div>
         </div>
     </body>
+</html>
