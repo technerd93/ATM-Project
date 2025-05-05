@@ -25,7 +25,7 @@ if (mysqli_num_rows($result) === 0) {
     //echo "Invalid user ID or account not found.";
 
     //redirects user after a short delay to show there user id is not valid. 
-    header("Location: invalid_user_id.html"); 
+    header("Location: invalid_withdrawal_account_checking.html"); 
     mysqli_close($conn);
     exit;
 }
