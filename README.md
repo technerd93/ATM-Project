@@ -15,8 +15,7 @@ AtmHomepage: Explanation
         <div id="Container">
             <div id = "intro_text">
             <h1>Please make a selection.</h1> //You will need to make a selection of what is shown: Withdraw checking, Withdraw Savings, and View Balance
-            <h2>this link shows what the program looks like when running and how to use the ATM system.</h2>
-                <h3>https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
+            <h2>this link shows what the program looks like when running and how to use the ATM system. https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h2>
             </div>
             <div id="select_checking">
                     <a href="checking.html">
