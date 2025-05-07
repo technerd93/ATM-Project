@@ -189,14 +189,15 @@ CREATE TABLE Transactions (                         //This area is the queries t
     amount DECIMAL(10,2) NOT NULL,
     transaction_date DATETIME DEFAULT CURRENT_TIMESTAMP,
     status VARCHAR(20) DEFAULT 'completed',
-    FOREIGN KEY (account_id) REFERENCES Accounts(account_id)
+    user_id INT AUTO_INCREMENT,
+    FOREIGN KEY (account_id) REFERENCES Accounts(account_id),
 );
  
-INSERT INTO Transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status)  // This area is the inserted user information.
+INSERT INTO Transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status, user_id)  // This area is the inserted user information.
 VALUES 
-    (11, 1, 'ATM1', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed')
-    (22, 2, 'ATM2', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed'),
-    (33, 3, 'ATM3', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed');
+    (11, 1, 'ATM1', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '1234')
+    (22, 2, 'ATM2', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '9101'),
+    (33, 3, 'ATM3', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '4567');
 
   Accounts: 
 CREATE TABLE Accounts (                              // This area is the account information that the user is connected to.
