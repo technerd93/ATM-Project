@@ -33,9 +33,6 @@ AtmHomepage: Explanation
                     <button onClick="vewbalance.html()" class="button">View Balance</button> //One of the choices
                 </a>
             </div> // the buttons have 'onClick' so it can activate the button to be clicked on
-            <br>
-            <h3>This link shows what the program looks like when running and how to use the ATM system. <br>
-                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
         </div>
     </body>
 </html>
@@ -94,6 +91,9 @@ Checking:
                         <button onClick="other_amount()" class="button">Other Amount</button> 
                     </a>
                 </div>
+                <br>
+            <h3>This link shows what the program looks like when running and how to use the ATM system. <br>
+                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
             </div>
         </div>
     </body>
