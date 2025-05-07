@@ -14,9 +14,7 @@ AtmHomepage: Explanation
     <body>
         <div id="Container">
             <div id = "intro_text">
-            <h1>Please make a selection.</h1> //You will need to make a selection of what is shown: Withdraw checking, Withdraw Savings, and View Balance
-            <h3>This link shows what the program looks like when running and how to use the ATM system. <br>
-                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
+            <h1>Please make a selection.</h1> //You will need to make a selection of what is shown: Withdraw checking, Withdraw Savings, and View Balance</h1>
             </div>
             <div id="select_checking">
                     <a href="checking.html">
@@ -35,6 +33,9 @@ AtmHomepage: Explanation
                     <button onClick="vewbalance.html()" class="button">View Balance</button> //One of the choices
                 </a>
             </div> // the buttons have 'onClick' so it can activate the button to be clicked on
+            <br>
+            <h3>This link shows what the program looks like when running and how to use the ATM system. <br>
+                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
         </div>
     </body>
 </html>
