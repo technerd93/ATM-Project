@@ -14,6 +14,9 @@ AtmHomepage: Explanation
     <body>
         <div id="Container">
             <div id = "intro_text">
+             <br>
+            <h3>This link shows what the program looks like when running and how to use the ATM system.  Below is a breif overview of the different items within the ATM System. <br>
+                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
             <h1>Please make a selection.</h1> //You will need to make a selection of what is shown: Withdraw checking, Withdraw Savings, and View Balance</h1>
             </div>
             <div id="select_checking">
@@ -91,9 +94,6 @@ Checking:
                         <button onClick="other_amount()" class="button">Other Amount</button> 
                     </a>
                 </div>
-                <br>
-            <h3>This link shows what the program looks like when running and how to use the ATM system. <br>
-                https://www.youtube.com/watch?v=cWymhNX0AV0&t=2s</h3>
             </div>
         </div>
     </body>
