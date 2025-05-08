@@ -199,9 +199,9 @@ CREATE TABLE Transactions (                         //This area is the queries t
  
 INSERT INTO Transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status, user_id)  // This area is the inserted user information.
 VALUES 
-    (11, 1, 'ATM1', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '1234')
-    (22, 2, 'ATM2', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '9101'),
-    (33, 3, 'ATM3', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', '4567');
+    (11, 1, 'ATM1', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', 1234)
+    (22, 2, 'ATM2', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', 9101),
+    (33, 3, 'ATM3', 'Withdrawal', 200.00, '2025-03-12 14:30:00', 'completed', 4567);
 
   Accounts: 
 CREATE TABLE Accounts (                              // This area is the account information that the user is connected to.
