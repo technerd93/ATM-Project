@@ -194,6 +194,7 @@ CREATE TABLE Transactions (                         //This area is the queries t
     status VARCHAR(20) DEFAULT 'completed',
     user_id INT AUTO_INCREMENT,
     FOREIGN KEY (account_id) REFERENCES Accounts(account_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
  
 INSERT INTO Transactions (transaction_id, account_id, atm_id, transaction_type, amount, transaction_date, status, user_id)  // This area is the inserted user information.
